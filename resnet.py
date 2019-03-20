@@ -208,10 +208,11 @@ class ResnetBuilder(object):
         block_fn = _get_block(block_fn)
 
         input = Input(shape=input_shape)
-        conv1 = _conv_bn_relu(filters=64, kernel_size=(7, 7), strides=(2, 2))(input)
-        pool1 = MaxPooling2D(pool_size=(3, 3), strides=(2, 2), padding="same")(conv1)
+        conv1 = _conv_bn_relu(filters=64, kernel_size=(3, 3), strides=(2, 2))(input)
+        #pool1 = MaxPooling2D(pool_size=(3, 3), strides=(2, 2), padding="same")(conv1)
 
-        block = pool1
+        #block = pool1
+        block = conv11
         filters = 64
         for i, r in enumerate(repetitions):
             block = _residual_block(block_fn, filters=filters, repetitions=r, is_first_layer=(i == 0))(block)
